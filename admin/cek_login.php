@@ -1,53 +1,39 @@
 <?php 
-// mengaktifkan session pada php
+// Start session
 session_start();
- 
-// menghubungkan php dengan koneksi database
+
+// Include database connection
 include '../koneksi/config.php';
- 
-// menangkap data yang dikirim dari form login
+
+// Get username and password from the login form
 $username = $_POST['username'];
 $password = $_POST['password'];
- 
- 
-// menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($koneksi,"SELECT * FROM tbl_admin WHERE username='$username' AND password='$password'");
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($login);
- 
-// cek apakah username dan password di temukan pada database
-if($cek > 0){
- 
-	$data = mysqli_fetch_assoc($login);
- 
-	// cek jika user login sebagai admin
-	if($data['level']=="admin"){
- 
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['password'] = $password;
-		$_SESSION['level'] = "admin";
-		// alihkan ke halaman dashboard admin
-		header("location:halaman_admin.php");
- 
-	// cek jika user login sebagai pegawai
-	}else if($data['level']=="super_admin"){
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['password'] = $password;
-		$_SESSION['level'] = "super_admin";
-		// alihkan ke halaman dashboard pegawai
-		header("location:halaman_super_admin.php");
- 
-	
- 
-	}else{
- 
-		// alihkan ke halaman login kembali
-		header("location:index.php?pesan=gagal");
-	}	
-}else{
-	header("location:index.php?pesan=gagal");
+
+// Query to select user data based on the provided username
+$login = mysqli_query($koneksi, "SELECT * FROM tbl_admin WHERE username='$username'");
+// Check if user exists
+if(mysqli_num_rows($login) > 0){
+    // Fetch user data
+    $data = mysqli_fetch_assoc($login);
+    
+    // Verify the provided password against the hashed password stored in the database
+    if(password_verify($password, $data['password'])){
+        // Set session variables based on user level
+        $_SESSION['username'] = $username;
+        $_SESSION['level'] = $data['level'];
+        
+        // Redirect based on user level
+        if($data['level'] == "admin"){
+            header("location: halaman_admin.php");
+        } elseif($data['level'] == "super_admin"){
+            header("location: halaman_super_admin.php");
+        }
+    } else {
+        // Redirect to login page with error message
+        header("location: index.php?pesan=gagal");
+    }
+} else {
+    // Redirect to login page with error message
+    header("location: index.php?pesan=gagal");
 }
- 
 ?>

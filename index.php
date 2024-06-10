@@ -90,76 +90,68 @@ session_start();
   <div class="jumbotron">
 
 
-    <div class="container">
-      <h1 class="display-5" text align="center">Apa Itu Paud</h1>
-                        <br>
-                        <br>
-       <img src="assets/img/paud.png" class="mx-auto d-block img-fluid" width="200px" height="200px"> 
-
-      <h5 class="paud" align="justify">
-        Pendidikan anak usia dini (PAUD) adalah jenjang pendidikan sebelum jenjang pendidikan dasar yang merupakan suatu upaya pembinaan yang ditujukan bagi anak sejak lahir sampai dengan usia enam tahun yang dilakukan melalui pemberian rangsangan pendidikan untuk membantu pertumbuhan dan perkembangan jasmani dan rohani agar anak memiliki kesiapan dalam memasuki pendidikan lebih lanjut, yang diselenggarakan pada jalur formal, nonformal, dan informal. 
-      </h5>
-    </div>
-</div>
-
-    <div class="container">
-
-      <h1 class="display-5" text align="center">Visi Dan Misi Paud Ceria</h1>
-                        <br>
-                        <br>
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="assets/img/ceria1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h4 class="card-title" align="center">Ceria</h5>
-                      <p class="card-text">Menjadikan anak didik menjadi anak yang ceria dan bahagia</p>
-                    </div>
-                  </div>
-                </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                <br><br>
-                    <img src="assets/img/sehat.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h4 class="card-title" align="center">Sehat</h5>
-                      <p class="card-text">Menjadikan anak didik menjadi anak yang sehat jasmani maupun rohani</p>
-                    </div>
-                  </div>
-                </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="assets/img/cerdas.png"  class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h4 class="card-title" align="center">Cerdas</h5>
-                      <p class="card-text">Menjadikan anak didik menjadi anak yang cerdas dan pintar</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                <div class="card">
-                    <img src="assets/img/mandiri.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h4 class="card-title" align="center">Mandiri</h5>
-                      <p class="card-text">Menjadikan anak didik menjadi anak yang mandiri sehingga tidak manja</p>
-                    </div>
-                  </div>
-                </div>
-
+  <div class="container d-flex justify-content-center align-items-center my-5">
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img src="assets/img/paud.png" class="img-fluid" width="400px" height="400px" alt="Paud Image"> 
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-4">Apa Itu Paud</h1>
+            <h5 class="text-justify">
+                Pendidikan anak usia dini (PAUD) adalah jenjang pendidikan sebelum jenjang pendidikan dasar yang merupakan suatu upaya pembinaan yang ditujukan bagi anak sejak lahir sampai dengan usia enam tahun yang dilakukan melalui pemberian rangsangan pendidikan untuk membantu pertumbuhan dan perkembangan jasmani dan rohani agar anak memiliki kesiapan dalam memasuki pendidikan lebih lanjut, yang diselenggarakan pada jalur formal, nonformal, dan informal.
+            </h5>
         </div>
     </div>
-
-    <br>
-    <br>
-
-
-<div id="footer">
-      <h5>&copy;2018 Copyright @bayujunisp & @rainhardevans</h5>
 </div>
+</div>
+
+<div class="container mt-5">
+    <h1 class="display-5 text-center">Visi Dan Misi Paud Ceria</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="assets/img/ceria1.png" class="card-img-top" alt="Ceria">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Ceria</h4>
+                    <p class="card-text text-center">Menjadikan anak didik menjadi anak yang ceria dan bahagia</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="assets/img/sehat.png" class="card-img-top" alt="Sehat">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Sehat</h4>
+                    <p class="card-text text-center">Menjadikan anak didik menjadi anak yang sehat jasmani maupun rohani</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="assets/img/cerdas.png" class="card-img-top" alt="Cerdas">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Cerdas</h4>
+                    <p class="card-text text-center">Menjadikan anak didik menjadi anak yang cerdas dan pintar</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img src="assets/img/mandiri.png" class="card-img-top" alt="Mandiri">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Mandiri</h4>
+                    <p class="card-text text-center">Menjadikan anak didik menjadi anak yang mandiri sehingga tidak manja</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="mt-5 text-center">
+    <h5>&copy;2024 Copyright Fajar Anugrah & Rafli</h5>
+</div>
+
 
     
 </body>

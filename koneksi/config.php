@@ -1,5 +1,5 @@
 <?php 
 
-$koneksi = mysqli_connect('localhost','root','','paud');
+$koneksi = mysqli_connect('localhost','root','','managed-paud');
 
  ?>

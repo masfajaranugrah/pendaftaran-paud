@@ -117,7 +117,7 @@ session_start();
              
 
 <div id="footer">
-   <h5>&copy;2018 Copyright @bayujunisp & @rainhardevans</h5>
+   <h5>&copy; Copyright fajar anugrah & rafli</h5>
 </div>
 
     

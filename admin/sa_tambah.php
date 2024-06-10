@@ -51,32 +51,40 @@ include('../koneksi/config.php');
 		
 		
 		<?php
-		if(isset($_POST['submit'])){
-			$nama			= $_POST['nama'];
-			$username	= $_POST['username'];
-			$password		= $_POST['password'];
-			$level		= $_POST['level'];
+if(isset($_POST['submit'])){
+    include 'koneksi/config.php'; // Include your database connection file
 
-				$sql = "SELECT id_admin as maxid FROM tbl_admin order by id_admin desc";	
-				$hasil = mysqli_query($koneksi,$sql);
-				$data  = mysqli_fetch_array($hasil);
-				$id_user = $data['maxid'];
-				$noUrut = (int) substr($id_user, 2);
-				$noUrut++;
+    // Capture form data
+    $nama = $_POST['nama'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $level = $_POST['level'];
 
-				$char = "AD";
-				$newID = $char . sprintf("%03s", $noUrut);
+    // Generate unique ID for the new admin
+    $sql = "SELECT id_admin as maxid FROM tbl_admin ORDER BY id_admin DESC";    
+    $hasil = mysqli_query($koneksi, $sql);
+    $data  = mysqli_fetch_array($hasil);
+    $id_user = $data['maxid'];
+    $noUrut = (int) substr($id_user, 2);
+    $noUrut++;
 
-				$sql = mysqli_query($koneksi, "INSERT INTO tbl_admin(id_admin, nama, username, password,level) VALUES('$newID', '$nama', '$username', '$password', '$level')") or die(mysqli_error($koneksi));
-				
-				if($sql){
-					echo '<script>alert("Berhasil menambahkan data."); document.location="sa_index.php";</script>';
-				}else{
-					echo '<script>alert("Gagal menambahkan data."); document.location="sa_index.php";</script>';
-				}
-			
-		}
-		?>
+    $char = "AD";
+    $newID = $char . sprintf("%03s", $noUrut);
+
+    // Encrypt the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert data into tbl_admin with hashed password
+    $sql = mysqli_query($koneksi, "INSERT INTO tbl_admin(id_admin, nama, username, password, level) VALUES ('$newID', '$nama', '$username', '$hashed_password', '$level')") or die(mysqli_error($koneksi));
+    
+    if($sql){
+        echo '<script>alert("Berhasil menambahkan data."); document.location="sa_index.php";</script>';
+    }else{
+        echo '<script>alert("Gagal menambahkan data."); document.location="sa_index.php";</script>';
+    }
+}
+?>
+
 		
 		<form action="sa_tambah.php" method="post">
 

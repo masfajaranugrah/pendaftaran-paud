@@ -65,41 +65,45 @@ include('../koneksi/config.php');
 				</tr>
 			</thead>
 			<tbody>
-				<?php
-				//query ke database SELECT tabel mahasiswa urut berdasarkan id yang paling besar
-				$sql = mysqli_query($koneksi, "SELECT * FROM tbl_admin ORDER BY id_admin DESC") or die(mysqli_error($koneksi));
-				//jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
-				if(mysqli_num_rows($sql) > 0){
-					//membuat variabel $no untuk menyimpan nomor urut
-					$no = 1;
-					//melakukan perulangan while dengan dari dari query $sql
-					while($data = mysqli_fetch_assoc($sql)){
-						//menampilkan data perulangan
-						echo '
-						<tr>
-							<td>'.$no.'</td>
-							<td>'.$data['id_admin'].'</td>
-							<td>'.$data['nama'].'</td>
-							<td>'.$data['username'].'</td>
-							<td>'.$data['password'].'</td>
-							<td>'.$data['level'].'</td>
-							<td>
-								<a href="sa_edit.php?id_admin='.$data['id_admin'].'" class="badge badge-warning">Edit</a>
-								<a href="sa_delete.php?id_admin='.$data['id_admin'].'" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
-							</td>
-						</tr>
-						';
-						$no++;
-					}
-				//jika query menghasilkan nilai 0
-				}else{
-					echo '
-					<tr>
-						<td colspan="6">Tidak ada data.</td>
-					</tr>
-					';
-				}
-				?>
+			<?php
+ 
+// Query to retrieve data from tbl_admin ordered by id_admin
+$sql = mysqli_query($koneksi, "SELECT * FROM tbl_admin ORDER BY id_admin DESC") or die(mysqli_error($koneksi));
+
+// Check if there are any rows returned
+if(mysqli_num_rows($sql) > 0){
+    $no = 1; // Initialize a variable to store the row number
+    // Loop through each row of the result set
+    while($data = mysqli_fetch_assoc($sql)){
+        // Display data in each row
+        echo '
+        <tr>
+            <td>'.$no.'</td>
+            <td>'.$data['id_admin'].'</td>
+            <td>'.$data['nama'].'</td>
+            <td>'.$data['username'].'</td>';
+        // Check if the plaintext_password column exists and is not empty
+        if(isset($data['plaintext_password']) && !empty($data['plaintext_password'])){
+            // Display the plaintext password if it exists
+            echo '<td>'.$data['plaintext_password'].'</td>';
+        } else {
+            // Display the hashed password if plaintext_password does not exist
+            echo '<td>'.$data['password'].'</td>';
+        }
+        echo '<td>'.$data['level'].'</td>
+            <td>
+                <a href="sa_edit.php?id_admin='.$data['id_admin'].'" class="badge badge-warning">Edit</a>
+                <a href="sa_delete.php?id_admin='.$data['id_admin'].'" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+            </td>
+        </tr>';
+        $no++; // Increment the row number
+    }
+} else {
+    // If no rows are returned, display a message
+    echo '<tr><td colspan="6">Tidak ada data.</td></tr>';
+}
+?>
+
 			<tbody>
 		</table>
 		

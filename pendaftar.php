@@ -23,14 +23,14 @@ session_start();
 <script type="text/javascript" src="assets/js/dataTables.bootstrap4.js"></script>
 
 
-    <title>Paud Ceria</title>
+    <title>Paud Tidak Ceria</title>
 </head>
 <body>
     
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container">
                  
-                 <a class="navbar-brand" href="index.php"> <img src="assets/img/paud.png" width="50px" height="50px"> Paud Ceria </a>
+                 <a class="navbar-brand" href="index.php"> <img src="assets/img/paud.png" width="50px" height="50px"> Paud Tidak Ceria </a>
                   
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -84,10 +84,9 @@ session_start();
 
              
 
-<div id="footer">
-   <h5>&copy;2018 Copyright @bayujunisp & @rainhardevans</h5>
+              <div id="footer">
+   <h5>&copy; Copyright fajar anugrah & rafli</h5>
 </div>
-
     
 </body>
 </html>

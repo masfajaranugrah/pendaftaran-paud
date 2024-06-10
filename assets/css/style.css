@@ -7,11 +7,13 @@ height: 100%;
 #footer{
     background-color:#000;
     width: 100%;
-    height: 200px;
+    height: 100px;
     color: #FFFFFF;
     text-align: center;
-    font-size: 15px;
-    padding-top: 80px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 
@@ -20,7 +22,17 @@ height: 100%;
     text-align: center;
     margin-bottom: 50px;
 }
-
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.card-title {
+    margin-top: 15px;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
 .carousel-item {
     height: 65vh;
     min-height: 350px;

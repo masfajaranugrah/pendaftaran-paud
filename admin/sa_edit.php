@@ -48,46 +48,50 @@ include('../koneksi/config.php');
 		<hr>
 		
 		<?php
-		//jika sudah mendapatkan parameter GET id dari URL
-		if(isset($_GET['id_admin'])){
-			//membuat variabel $id untuk menyimpan id dari GET id di URL
-			$id_admin = $_GET['id_admin'];
-			
-			//query ke database SELECT tabel mahasiswa berdasarkan id = $id
-			$select = mysqli_query($koneksi, "SELECT * FROM tbl_admin WHERE id_admin='$id_admin'") or die(mysqli_error($koneksi));
-			
-			//jika hasil query = 0 maka muncul pesan error
-			if(mysqli_num_rows($select) == 0){
-				echo '<div class="alert alert-warning">ID tidak ada dalam database.</div>';
-				exit();
-			//jika hasil query > 0
-			}else{
-				//membuat variabel $data dan menyimpan data row dari query
-				$data = mysqli_fetch_assoc($select);
-			}
+// Check if the 'id_admin' parameter is set in the URL
+if(isset($_GET['id_admin'])){
+    // Get the 'id_admin' value from the URL
+    $id_admin = $_GET['id_admin'];
+    
+    // Select the admin data from the database based on the 'id_admin'
+    $select = mysqli_query($koneksi, "SELECT * FROM tbl_admin WHERE id_admin='$id_admin'") or die(mysqli_error($koneksi));
+    
+    // Check if the query returned any rows
+    if(mysqli_num_rows($select) == 0){
+        echo '<div class="alert alert-warning">ID tidak ada dalam database.</div>';
+        exit();
+    } else {
+        // Fetch the admin data
+        $data = mysqli_fetch_assoc($select);
+    }
 
-			$level = $data['level'];
-		}
-		?>
-		
-		<?php
-		//jika tombol simpan di tekan/klik
-		if(isset($_POST['submit'])){
-			$id_admin			= $_POST['id_admin'];
-			$nama			= $_POST['nama'];
-			$username	= $_POST['username'];
-			$password		= $_POST['password'];
-			$level		= $_POST['level'];
-			
-			$sql = mysqli_query($koneksi, "UPDATE tbl_admin SET nama='$nama', username='$username', password='$password',level='$level' WHERE id_admin ='$id_admin'") or die(mysqli_error($koneksi));
-			
-			if($sql){
-				echo '<script>alert("Berhasil menyimpan data."); document.location="sa_index.php";</script>';
-			}else{
-				echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
-			}
-		}
-		?>
+    // Store the admin's level
+    $level = $data['level'];
+}
+
+// If the 'submit' button is clicked
+if(isset($_POST['submit'])){
+    // Get data from the form
+    $id_admin = $_POST['id_admin'];
+    $nama = $_POST['nama'];
+    $username = $_POST['username'];
+    $password = $_POST['password']; // Plain text password from the form
+    $level = $_POST['level'];
+
+    // Encrypt the plain text password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Update the admin data in the database
+    $sql = mysqli_query($koneksi, "UPDATE tbl_admin SET nama='$nama', username='$username', password='$hashed_password', level='$level' WHERE id_admin ='$id_admin'") or die(mysqli_error($koneksi));
+    
+    if($sql){
+        echo '<script>alert("Berhasil menyimpan data."); document.location="sa_index.php";</script>';
+    } else {
+        echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
+    }
+}
+?>
+
 		
 		<form action="" method="post">
 
