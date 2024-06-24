@@ -1,6 +1,5 @@
 
 <?php
-	
 	include"../koneksi/config.php";
 	$no = 1;
 	$id = $_POST['id'];
